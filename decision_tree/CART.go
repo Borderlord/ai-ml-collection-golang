@@ -11,3 +11,11 @@ type DecisionTreeDataTrain struct {
 	Type        []string
 	TargetClass []string
 }
+
+type DecisionTreeDataGuess struct {
+	Data [][]interface{}
+}
+
+type DecisionTree interface {
+	Predict(data DecisionTreeDataGuess)
+}
