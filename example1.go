@@ -104,3 +104,106 @@ func main() {
 
 	if err != nil {
 		panic(err)
+	}
+
+	for idx, p := range predicted {
+		fmt.Println(dataTest[idx], " >> ", p)
+	}
+
+	fmt.Println("============================== POS Tagger ====================================")
+	dir, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	file, err := ioutil.ReadFile(dir + "/go-learn-ai/tagged_corpus/Indonesian.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defaultTag := "NN"
+	allTuple := tagger.StringToTuple(tagger.StringToTupleInput{
+		Text:    string(file),
+		Lower:   false,
+		Default: &defaultTag,
+	})
+
+	border := len(allTuple.Tuple) * 90 / 100
+	trainTuple := allTuple.Tuple[0:border]
+	testTuple := allTuple.Tuple[border:len(allTuple.Tuple)]
+
+	var testTaggedWord [][2]string
+	testSentence := ""
+
+	for _, sentence := range testTuple {
+		for _, word := range sentence {
+			testTaggedWord = append(testTaggedWord, word)
+			testSentence += word[0] + " "
+		}
+	}
+
+	defaultTagger := tagger.NewDefaultTagger(tagger.DefaultTaggerConfig{
+		DefaultTag: "nn",
+	})
+
+	err = defaultTagger.Learn(trainTuple)
+
+	if err != nil {
+		panic(err)
+	}
+
+	predictedValue, err := defaultTagger.Predict(testSentence)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Recall Of Default Tagger Only >> ", helper.CalculateRecall(testTaggedWord, predictedValue))
+
+	regexTagger := tagger.NewRegexTagger(tagger.RegexTaggerConfig{
+		Patterns:      tagger.DefaultSimpleIndonesianRegexTagger,
+		BackoffTagger: defaultTagger,
+	})
+
+	err = regexTagger.Learn(trainTuple)
+
+	if err != nil {
+		panic(err)
+	}
+
+	predictedValue, err = regexTagger.Predict(testSentence)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Recall Of Regex Tagger With Backoff >> ", helper.CalculateRecall(testTaggedWord, predictedValue))
+
+	unigramTagger := tagger.NewUnigramTagger(tagger.UnigramTaggerConfig{
+		BackoffTagger: regexTagger,
+	})
+
+	err = unigramTagger.Learn(trainTuple)
+
+	if err != nil {
+		panic(err)
+	}
+
+	predictedValue, err = unigramTagger.Predict(testSentence)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Recall Of Unigram Tagger With Backoff >> ", helper.CalculateRecall(testTaggedWord, predictedValue))
+
+	bigramTagger := tagger.NewNGramTagger(tagger.NGramTaggerConfig{
+		BackoffTagger: unigramTagger,
+		N:             2,
+	})
+
+	err = bigramTagger.Learn(trainTuple)
+
+	if err != nil {
+		panic(err)
+	}
