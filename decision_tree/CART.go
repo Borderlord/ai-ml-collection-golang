@@ -5,4 +5,9 @@ const (
 	CATEGORICAL = "categorical"
 )
 
-type DecisionTreeData
+type DecisionTreeDataTrain struct {
+	Features    []string
+	Data        [][]interface{}
+	Type        []string
+	TargetClass []string
+}
