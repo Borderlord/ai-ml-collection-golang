@@ -207,3 +207,115 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	predictedValue, err = bigramTagger.Predict(testSentence)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Recall Of Bigram Tagger With Backoff >> ", helper.CalculateRecall(testTaggedWord, predictedValue))
+
+	trigramTagger := tagger.NewNGramTagger(tagger.NGramTaggerConfig{
+		BackoffTagger: bigramTagger,
+		N:             3,
+	})
+
+	err = trigramTagger.Learn(trainTuple)
+
+	if err != nil {
+		panic(err)
+	}
+
+	predictedValue, err = trigramTagger.Predict(testSentence)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Recall Of Trigram Tagger With Backoff >> ", helper.CalculateRecall(testTaggedWord, predictedValue))
+
+	fmt.Println("=================================== NFA ======================================")
+	nfa, state0, err := nfa2.NewNFA("State 0", false)
+
+	if err != nil {
+		panic(err)
+	}
+
+	state1, err := nfa.AddState(&nfa2.State{
+		Name: "State 1",
+	}, false)
+
+	if err != nil {
+		panic(err)
+	}
+
+	state2, err := nfa.AddState(&nfa2.State{
+		Name: "State 2",
+	}, true)
+
+	if err != nil {
+		panic(err)
+	}
+
+	if err != nil {
+		panic(err)
+	}
+
+	err = nfa.AddTransition(state0.Index, "a", *state1, *state2)
+
+	if err != nil {
+		panic(err)
+	}
+
+	err = nfa.AddTransition(state1.Index, "b", *state0, *state2)
+
+	if err != nil {
+		panic(err)
+	}
+
+	var inputs []string
+	fmt.Println("Input a")
+	inputs = append(inputs, "a")
+
+	fmt.Println("Input b")
+
+	inputs = append(inputs, "b")
+
+	nfa.PrintTransitionTable()
+
+	fmt.Println("If input a, b will go to final?", nfa.VerifyInputs(inputs))
+	fmt.Println("If input a, b will go to final?", nfa.VerifyInputs(inputs))
+
+	fmt.Println("========================= Information Extraction =============================")
+
+	text := "Menteri Perhubungan Ignasius Jonan dan Jaksa Agung Prasetyo , menandatangani MoU tentang kordinasi dalam pelaksanaan tugas dan fungsi"
+
+	predictedValue, err = bigramTagger.Predict(text)
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(predictedValue)
+
+	gp, err := grammar_parser.NewRegexpParser(grammar_parser.RegexpParserConfig{
+		Grammar: [][2]string{
+			{"NP", "{<NN>+}"}, //Chunking
+		},
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	parsedGrammar, err := gp.Parse(predictedValue)
+
+	if err != nil {
+		panic(err)
+	}
+
+	for _, x := range parsedGrammar {
+		if x.GeneralTag != nil {
+			fmt.Println(*x.GeneralTag, "-> ", x.Words)
+		} else {
