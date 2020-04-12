@@ -5,4 +5,5 @@ import (
 	"github.com/adrian3ka/go-learn-ai/grammar_parser"
 )
 
-fun
+func main() {
+	fmt.Println("==================================CHUNKING==========================
