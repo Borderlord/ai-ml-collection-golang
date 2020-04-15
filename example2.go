@@ -6,4 +6,9 @@ import (
 )
 
 func main() {
-	fmt.Println("==================================CHUNKING==========================
+	fmt.Println("==================================CHUNKING===========================================")
+	taggedSentence := [][2]string{
+		{"the", "DT"},
+		{"little", "JJ"},
+		{"yellow", "JJ"},
+		
