@@ -18,4 +18,6 @@ func main() {
 		{"cat", "NN"},
 	}
 
-	g
+	gp, err := grammar_parser.NewRegexpParser(grammar_parser.RegexpParserConfig{
+		Grammar: [][2]string{
+			{"NP", 
