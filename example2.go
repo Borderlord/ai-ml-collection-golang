@@ -20,4 +20,12 @@ func main() {
 
 	gp, err := grammar_parser.NewRegexpParser(grammar_parser.RegexpParserConfig{
 		Grammar: [][2]string{
-			{"NP", 
+			{"NP", "{<DT>?<JJ>*<NN>}"}, //Chunking
+		},
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	parsedGrammar, err := gp
