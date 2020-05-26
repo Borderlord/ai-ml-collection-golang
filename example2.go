@@ -28,4 +28,10 @@ func main() {
 		panic(err)
 	}
 
-	parsedGrammar, err := gp
+	parsedGrammar, err := gp.Parse(taggedSentence)
+
+	if err != nil {
+		panic(err)
+	}
+
+	for _, x := range parsedGrammar 
