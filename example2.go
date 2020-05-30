@@ -38,4 +38,9 @@ func main() {
 		if x.GeneralTag != nil {
 			fmt.Println(*x.GeneralTag, "-> ", x.Words)
 		} else {
-			fmt.Println("-
+			fmt.Println("-> ", x.Words)
+		}
+	}
+
+	taggedSentence2 := [][2]string{
+		{"Rapunzel", "NNP"
