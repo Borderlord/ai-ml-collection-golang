@@ -48,4 +48,9 @@ func main() {
 		{"down", "RP"},
 		{"her", "PRP"},
 		{"long", "JJ"},
-		{"golden", 
+		{"golden", "JJ"},
+		{"hair", "NN"},
+	}
+
+	gp2, err := grammar_parser.NewRegexpParser(grammar_parser.RegexpParserConfig{
+		Gramm
