@@ -43,4 +43,9 @@ func main() {
 	}
 
 	taggedSentence2 := [][2]string{
-		{"Rapunzel", "NNP"
+		{"Rapunzel", "NNP"},
+		{"let", "VBD"},
+		{"down", "RP"},
+		{"her", "PRP"},
+		{"long", "JJ"},
+		{"golden", 
