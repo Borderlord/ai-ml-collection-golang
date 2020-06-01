@@ -53,4 +53,9 @@ func main() {
 	}
 
 	gp2, err := grammar_parser.NewRegexpParser(grammar_parser.RegexpParserConfig{
-		Gramm
+		Grammar: [][2]string{
+			{"NP", "{<DT|PRP>?<JJ>*<NN>}"}, //Chunking
+			{"NP", "{<NNP>+}"},             //Chunking
+		},
+	})
+
