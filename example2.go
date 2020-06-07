@@ -59,3 +59,10 @@ func main() {
 		},
 	})
 
+	if err != nil {
+		panic(err)
+	}
+
+	parsedGrammar, err = gp2.Parse(taggedSentence2)
+
+	if err != nil 
