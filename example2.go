@@ -65,4 +65,10 @@ func main() {
 
 	parsedGrammar, err = gp2.Parse(taggedSentence2)
 
-	if err != nil 
+	if err != nil {
+		panic(err)
+	}
+
+	for _, x := range parsedGrammar {
+		if x.GeneralTag != nil {
+			fmt.Println(*x.GeneralT
