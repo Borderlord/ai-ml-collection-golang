@@ -81,4 +81,12 @@ func main() {
 
 	gp3, err := grammar_parser.NewRegexpParser(grammar_parser.RegexpParserConfig{
 		Grammar: [][2]string{
-			{"NP"
+			{"NP", "}<VBD><RP>{"}, //Chinking
+		},
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	parsedGrammar, err = gp3.Parse(
