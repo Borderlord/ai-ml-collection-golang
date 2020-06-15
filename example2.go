@@ -89,4 +89,12 @@ func main() {
 		panic(err)
 	}
 
-	parsedGrammar, err = gp3.Parse(
+	parsedGrammar, err = gp3.Parse(taggedSentence2)
+
+	if err != nil {
+		panic(err)
+	}
+
+	for _, x := range parsedGrammar {
+		if x.GeneralTag != nil {
+	
