@@ -79,4 +79,6 @@ func main() {
 
 	fmt.Println("==================================CHINKING===========================================")
 
-	gp3, err := grammar_
+	gp3, err := grammar_parser.NewRegexpParser(grammar_parser.RegexpParserConfig{
+		Grammar: [][2]string{
+			{"NP"
