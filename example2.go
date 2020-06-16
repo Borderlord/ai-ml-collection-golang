@@ -97,4 +97,9 @@ func main() {
 
 	for _, x := range parsedGrammar {
 		if x.GeneralTag != nil {
-	
+			fmt.Println(*x.GeneralTag, "-> ", x.Words)
+		} else {
+			fmt.Println("-> ", x.Words)
+		}
+	}
+}
