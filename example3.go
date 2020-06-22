@@ -8,4 +8,8 @@ import (
 )
 
 func main() {
-	vect := word
+	vect := word_vectorizer.NewArrayWordVectorizer(word_vectorizer.ArrayWordVectorizerConfig{
+		Lower: true,
+	})
+
+	err := 
