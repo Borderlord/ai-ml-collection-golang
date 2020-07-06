@@ -16,4 +16,9 @@ func main() {
 		{"king", "strong"},
 		{"king", "man"},
 		{"strong", "king"},
-		{"s
+		{"strong", "man"},
+		{"man", "king"},
+		{"man", "strong"},
+		{"queen", "wise"},
+		{"queen", "woman"},
+		{"wis
