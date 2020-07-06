@@ -12,4 +12,8 @@ func main() {
 		Lower: true,
 	})
 
-	err := 
+	err := vect.Learn([][2]string{
+		{"king", "strong"},
+		{"king", "man"},
+		{"strong", "king"},
+		{"s
