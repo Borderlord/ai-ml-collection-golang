@@ -46,4 +46,9 @@ func main() {
 		{"princess", "young"},
 		{"princess", "queen"},
 		{"young", "princess"},
-		{"young",
+		{"young", "queen"},
+		{"queen", "princess"},
+		{"queen", "young"},
+		{"man", "strong"},
+		{"strong", "man"},
+		{"woman", "p
