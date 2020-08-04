@@ -56,4 +56,9 @@ func main() {
 		{"prince", "boy"},
 		{"prince", "king"},
 		{"boy", "prince"},
-		{"bo
+		{"boy", "king"},
+		{"king", "prince"},
+		{"king", "boy"},
+		{"princess", "girl"},
+		{"princess", "queen"},
+		{"gir
