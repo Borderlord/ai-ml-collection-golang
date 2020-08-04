@@ -61,4 +61,12 @@ func main() {
 		{"king", "boy"},
 		{"princess", "girl"},
 		{"princess", "queen"},
-		{"gir
+		{"girl", "princess"},
+		{"girl", "queen"},
+		{"queen", "princess"},
+		{"queen", "girl"},
+	})
+
+	fmt.Println(err)
+
+	fmt
