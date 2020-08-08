@@ -69,4 +69,6 @@ func main() {
 
 	fmt.Println(err)
 
-	fmt
+	fmt.Println(vect.GetVectorizedWord())
+
+	oneHotEncoder := one_hot_encoding.NewOneHotEncoder(one
