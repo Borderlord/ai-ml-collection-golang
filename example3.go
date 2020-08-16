@@ -78,4 +78,6 @@ func main() {
 	fmt.Println(oneHotEncoder.GetEncodedData())
 
 	wordEmbedding, err := word_embedding.NewWordEmbedding(word_embedding.WordEmbeddingConfig{
-		Dimension:  
+		Dimension:          2,
+		Optimizer:          word_embedding.GradientDescentOptimizer,
+		ActivationFunction: word_embedding.S
