@@ -75,4 +75,7 @@ func main() {
 		LabelEncodedData: vect,
 	})
 
-	fmt.Println(oneHotEncoder.GetEnc
+	fmt.Println(oneHotEncoder.GetEncodedData())
+
+	wordEmbedding, err := word_embedding.NewWordEmbedding(word_embedding.WordEmbeddingConfig{
+		Dimension:  
