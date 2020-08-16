@@ -71,4 +71,8 @@ func main() {
 
 	fmt.Println(vect.GetVectorizedWord())
 
-	oneHotEncoder := one_hot_encoding.NewOneHotEncoder(one
+	oneHotEncoder := one_hot_encoding.NewOneHotEncoder(one_hot_encoding.OneHotEncoderConfig{
+		LabelEncodedData: vect,
+	})
+
+	fmt.Println(oneHotEncoder.GetEnc
