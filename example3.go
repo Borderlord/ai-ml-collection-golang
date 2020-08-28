@@ -80,4 +80,9 @@ func main() {
 	wordEmbedding, err := word_embedding.NewWordEmbedding(word_embedding.WordEmbeddingConfig{
 		Dimension:          2,
 		Optimizer:          word_embedding.GradientDescentOptimizer,
-		ActivationFunction: word_embedding.S
+		ActivationFunction: word_embedding.Softmax,
+		LossFunction:       word_embedding.CrossEntropy,
+		OneHotEncodedData:  oneHotEncoder,
+	})
+
+	fmt
