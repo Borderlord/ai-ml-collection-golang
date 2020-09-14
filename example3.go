@@ -85,4 +85,5 @@ func main() {
 		OneHotEncodedData:  oneHotEncoder,
 	})
 
-	fmt
+	fmt.Println(err, wordEmbedding)
+}
