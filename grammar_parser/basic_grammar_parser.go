@@ -72,3 +72,107 @@ func handleNoneOrMore(input *HandleSymbolInput) (*nfa.NFA, []*nfa.State, error) 
 		}, input.IsFinal)
 
 		if err != nil {
+			return nil, nil, err
+		}
+	}
+
+	newStates = append(newStates, state1)
+
+	err = input.NfaData.AddTransition(state1.Index, input.Tag, *state1)
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	for idx, _ := range input.PreviousState {
+		newStates = append(newStates, input.PreviousState[idx])
+		err = input.NfaData.AddTransition(input.PreviousState[idx].Index, input.Tag, *state1)
+
+		if err != nil {
+			return nil, nil, err
+		}
+
+	}
+
+	return input.NfaData, newStates, nil
+}
+
+func handleBasic(input *HandleSymbolInput) (*nfa.NFA, []*nfa.State, error) {
+	var newStates []*nfa.State
+	var state1 *nfa.State
+	var err error
+
+	if input.NfaData == nil {
+		input.NfaData, state1, err = nfa.NewNFA(input.Tag, input.IsFinal)
+
+		if err != nil {
+			return nil, nil, err
+		}
+
+	} else {
+
+		state1, err = input.NfaData.AddState(&nfa.State{
+			Name: input.Tag,
+		}, input.IsFinal)
+
+		if err != nil {
+			return nil, nil, err
+		}
+	}
+
+	newStates = append(newStates, state1)
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	for idx, _ := range input.PreviousState {
+		err = input.NfaData.AddTransition(input.PreviousState[idx].Index, input.Tag, *state1)
+
+		if err != nil {
+			return nil, nil, err
+		}
+	}
+
+	return input.NfaData, newStates, nil
+}
+
+func handleOptional(input *HandleSymbolInput) (*nfa.NFA, []*nfa.State, error) {
+	var newStates []*nfa.State
+	var state1 *nfa.State
+	var err error
+
+	if input.NfaData == nil {
+		input.NfaData, state1, err = nfa.NewNFA(input.Tag, input.IsFinal)
+
+		if err != nil {
+			return nil, nil, err
+		}
+
+	} else {
+
+		state1, err = input.NfaData.AddState(&nfa.State{
+			Name: input.Tag,
+		}, input.IsFinal)
+
+		if err != nil {
+			return nil, nil, err
+		}
+	}
+
+	newStates = append(newStates, state1)
+
+	var tags []string
+	tags = strings.Split(input.Tag, "|")
+
+	for _, tag := range tags {
+		err = input.NfaData.AddTransition(state1.Index, tag, *state1)
+	}
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	for idx, _ := range input.PreviousState {
+		newStates = append(newStates, input.PreviousState[idx])
+		err = input.NfaData.AddTransition(input.PreviousState[idx].Index, input.Tag, *state1)
