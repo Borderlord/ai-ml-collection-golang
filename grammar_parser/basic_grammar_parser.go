@@ -273,3 +273,101 @@ func handleInitialChunking(input *HandleSymbolInput) (*nfa.NFA, []*nfa.State, er
 
 	return input.NfaData, newStates, nil
 }
+
+func handleEndOfChunking(input *HandleSymbolInput) (*nfa.NFA, []*nfa.State, error) {
+	var newStates []*nfa.State
+	var state1 *nfa.State
+	var err error
+
+	if input.NfaData == nil {
+		input.NfaData, state1, err = nfa.NewNFA(nfa.Negate+input.Tag, true)
+
+		if err != nil {
+			return nil, nil, err
+		}
+
+	} else {
+		state1, err = input.NfaData.AddState(&nfa.State{
+			Name: nfa.Negate + input.Tag,
+		}, true)
+
+		if err != nil {
+			return nil, nil, err
+		}
+	}
+
+	var tags []string
+	tags = strings.Split(input.Tag, "|")
+
+	for _, tag := range tags {
+		err = input.NfaData.AddTransition(state1.Index, nfa.Negate+tag, *state1)
+	}
+
+	newStates = append(newStates, state1)
+
+	for idx, _ := range input.PreviousState {
+		err = input.NfaData.AddTransition(input.PreviousState[idx].Index, input.Tag, *state1)
+
+		if err != nil {
+			return nil, nil, err
+		}
+	}
+
+	return input.NfaData, newStates, nil
+}
+
+func convertGrammarToNfa(grammar string) (*nfa.NFA, *string, error) {
+	var newNFA *nfa.NFA
+	var grammarType string
+	var err error
+	var previousState []*nfa.State
+	var processedTag string
+	var tag *string
+
+	var nextTag *string
+	isFinal := false
+
+	if string(grammar[0]) == "{" && string(grammar[len(grammar)-1]) == "}" {
+		grammarType = Chunking
+	} else if string(grammar[0]) == "}" && string(grammar[len(grammar)-1]) == "{" {
+		grammarType = Chinking
+	} else {
+		return nil, nil, errors.New(InvalidGrammar)
+	}
+
+	if grammarType == Chunking {
+		grammar = strings.Replace(grammar, "{", "", 1)
+		grammar = strings.Replace(grammar, "}", "", 1)
+	} else if grammarType == Chinking {
+		grammar = strings.Replace(grammar, "}", "", 1)
+		grammar = strings.Replace(grammar, "{", "", 1)
+
+		tag := helper.GetStringInBetween(grammar, OpeningTag, ClosingTag)
+
+		if tag == nil {
+			return nil, nil, nil
+		}
+
+		nextTag = helper.GetStringInBetween(grammar, "<", ">")
+		isFinal = false
+
+		newNFA, previousState, err = handleInitialChunking(&HandleSymbolInput{
+			NfaData:       newNFA,
+			Tag:           *tag,
+			IsFinal:       isFinal,
+			PreviousState: previousState,
+		})
+
+		if err != nil {
+			return nil, nil, err
+		}
+	}
+
+	for {
+		tag = helper.GetStringInBetween(grammar, OpeningTag, ClosingTag)
+
+		if tag == nil {
+			break
+		}
+
+		processedTag = OpeningTag + *tag + ClosingTag
