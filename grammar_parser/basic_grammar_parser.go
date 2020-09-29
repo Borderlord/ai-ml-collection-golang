@@ -588,3 +588,27 @@ func (rp *RegexpParser) Parse(input [][2]string) ([]ParsedGrammar, error) {
 			parsedWords = nil
 			processedTag = nil
 		}
+
+		if idxWord == len(input)-1 && len(parsedWords) > 0 {
+			found := false
+			for _, nfaGrammar := range rp.nfaGrammar {
+				tag := nfaGrammar.Target
+
+				processedGrammars = append(processedGrammars, ParsedGrammar{
+					GeneralTag: &tag,
+					Words:      parsedWords,
+				})
+
+				found = true
+				break
+			}
+
+			if !found {
+				processedGrammars = append(processedGrammars, ParsedGrammar{
+					Words: parsedWords,
+				})
+			}
+		}
+	}
+	return processedGrammars, nil
+}
