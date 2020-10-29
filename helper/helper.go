@@ -15,4 +15,14 @@ func GetStringInBetween(str string, start string, end string) (result *string) {
 		return
 	}
 	s += len(start)
-	e := strings.Index(str, en
+	e := strings.Index(str, end)
+
+	if s == -1 || e == -1 {
+		return nil
+	}
+
+	ret := str[s:e]
+	return &ret
+}
+
+func IsLetter(s string) bo
