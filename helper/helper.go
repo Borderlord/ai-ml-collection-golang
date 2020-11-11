@@ -25,4 +25,10 @@ func GetStringInBetween(str string, start string, end string) (result *string) {
 	return &ret
 }
 
-func IsLetter(s string) bo
+func IsLetter(s string) bool {
+	for _, r := range s {
+		if !unicode.IsLetter(r) {
+			return false
+		}
+	}
+	retur
