@@ -31,4 +31,9 @@ func IsLetter(s string) bool {
 			return false
 		}
 	}
-	retur
+	return true
+}
+
+func IsAlphaNumeric(s string) bool {
+	re := regexp.MustCompile("^[a-zA-Z0-9]*$")
+	return
