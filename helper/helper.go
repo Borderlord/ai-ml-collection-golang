@@ -40,4 +40,8 @@ func IsAlphaNumeric(s string) bool {
 }
 
 func IsAlphaUnderscore(s string) bool {
-	re := regexp.MustCompile("^[a-zA-Z
+	re := regexp.MustCompile("^[a-zA-Z_]*$")
+	return re.MatchString(s)
+}
+
+func IsStringEqual(text string, characters []string)
