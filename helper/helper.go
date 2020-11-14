@@ -36,4 +36,8 @@ func IsLetter(s string) bool {
 
 func IsAlphaNumeric(s string) bool {
 	re := regexp.MustCompile("^[a-zA-Z0-9]*$")
-	return
+	return re.MatchString(s)
+}
+
+func IsAlphaUnderscore(s string) bool {
+	re := regexp.MustCompile("^[a-zA-Z
