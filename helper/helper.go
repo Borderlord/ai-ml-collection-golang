@@ -44,4 +44,13 @@ func IsAlphaUnderscore(s string) bool {
 	return re.MatchString(s)
 }
 
-func IsStringEqual(text string, characters []string)
+func IsStringEqual(text string, characters []string) bool {
+	for _, character := range characters {
+		if text == character {
+			return true
+		}
+	}
+	return false
+}
+
+fun
