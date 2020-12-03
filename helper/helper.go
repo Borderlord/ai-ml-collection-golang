@@ -53,4 +53,8 @@ func IsStringEqual(text string, characters []string) bool {
 	return false
 }
 
-fun
+func LastSplit(text string, rune string) []string {
+	result := strings.Split(text, rune)
+
+	if len(result) < 2 {
+		r
