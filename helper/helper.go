@@ -57,4 +57,11 @@ func LastSplit(text string, rune string) []string {
 	result := strings.Split(text, rune)
 
 	if len(result) < 2 {
-		r
+		return []string{
+			text,
+		}
+	}
+
+	return []string{
+		strings.Join(result[0:len(result)-1], rune),
+		resul
