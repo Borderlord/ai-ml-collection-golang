@@ -70,4 +70,9 @@ func LastSplit(text string, rune string) []string {
 func CalculateRecall(trueSlice interface{}, predictedSlice interface{}) float64 {
 	trueReflection := reflect.ValueOf(trueSlice)
 	if trueReflection.Kind() != reflect.Slice {
-		panic("Interf
+		panic("InterfaceSlice() given a non-slice type")
+	}
+
+	trueValue := make([]interface{}, trueReflection.Len())
+
+	for i 
