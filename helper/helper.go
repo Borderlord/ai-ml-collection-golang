@@ -64,4 +64,7 @@ func LastSplit(text string, rune string) []string {
 
 	return []string{
 		strings.Join(result[0:len(result)-1], rune),
-		resul
+		result[len(result)-1],
+	}
+}
+func CalculateRecall(trueSlice interface{}, predictedSlice interface{}) float
