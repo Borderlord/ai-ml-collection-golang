@@ -79,4 +79,6 @@ func CalculateRecall(trueSlice interface{}, predictedSlice interface{}) float64 
 		trueValue[i] = trueReflection.Index(i).Interface()
 	}
 
-	predictedReflecti
+	predictedReflection := reflect.ValueOf(predictedSlice)
+	if predictedReflection.Kind() != reflect.Slice {
+		panic("Int
