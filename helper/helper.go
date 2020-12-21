@@ -81,4 +81,9 @@ func CalculateRecall(trueSlice interface{}, predictedSlice interface{}) float64 
 
 	predictedReflection := reflect.ValueOf(predictedSlice)
 	if predictedReflection.Kind() != reflect.Slice {
-		panic("Int
+		panic("InterfaceSlice() given a non-slice type")
+	}
+
+	predictedValue := make([]interface{}, predictedReflection.Len())
+
+	for i := 0; i < predicted
