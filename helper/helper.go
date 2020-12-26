@@ -86,4 +86,8 @@ func CalculateRecall(trueSlice interface{}, predictedSlice interface{}) float64 
 
 	predictedValue := make([]interface{}, predictedReflection.Len())
 
-	for i := 0; i < predicted
+	for i := 0; i < predictedReflection.Len(); i++ {
+		predictedValue[i] = predictedReflection.Index(i).Interface()
+	}
+
+	truePositive :
