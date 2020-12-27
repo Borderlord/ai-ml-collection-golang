@@ -94,4 +94,10 @@ func CalculateRecall(trueSlice interface{}, predictedSlice interface{}) float64 
 	falseNegative := float64(0)
 
 	for i := 0; i < len(predictedValue)-1; i++ {
-		if predi
+		if predictedValue[i] != trueValue[i] {
+			falseNegative += 1
+		} else {
+			truePositive += 1
+		}
+	}
+	return true
