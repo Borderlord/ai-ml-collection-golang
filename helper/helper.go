@@ -111,4 +111,7 @@ func RandFloats(min, max float64, n int) []float64 {
 	return res
 }
 
-func Rand
+func RandFloat(min, max float64) float64 {
+	res := min + rand.Float64()*(max-min)
+	return res
+}
