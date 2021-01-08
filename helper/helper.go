@@ -100,4 +100,8 @@ func CalculateRecall(trueSlice interface{}, predictedSlice interface{}) float64 
 			truePositive += 1
 		}
 	}
-	return true
+	return truePositive / (truePositive + falseNegative)
+}
+
+func RandFloats(min, max float64, n int) []float64 {
+	res := make([]
