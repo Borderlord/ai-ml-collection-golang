@@ -115,3 +115,6 @@ func RandFloat(min, max float64) float64 {
 	res := min + rand.Float64()*(max-min)
 	return res
 }
+
+func SortByWordValue(wordValue map[string]float64) PairList {
+	pl := make(PairList, len
