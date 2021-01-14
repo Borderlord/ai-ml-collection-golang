@@ -117,4 +117,10 @@ func RandFloat(min, max float64) float64 {
 }
 
 func SortByWordValue(wordValue map[string]float64) PairList {
-	pl := make(PairList, len
+	pl := make(PairList, len(wordValue))
+	i := 0
+	for k, v := range wordValue {
+		pl[i] = Pair{k, v}
+		i++
+	}
+	sort.Sort(sort.Reverse(pl)
