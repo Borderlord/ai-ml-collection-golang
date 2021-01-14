@@ -123,4 +123,15 @@ func SortByWordValue(wordValue map[string]float64) PairList {
 		pl[i] = Pair{k, v}
 		i++
 	}
-	sort.Sort(sort.Reverse(pl)
+	sort.Sort(sort.Reverse(pl))
+	return pl
+}
+
+type Pair struct {
+	Key   string
+	Value float64
+}
+
+type PairList []Pair
+
+fun
