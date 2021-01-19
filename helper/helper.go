@@ -134,4 +134,5 @@ type Pair struct {
 
 type PairList []Pair
 
-fun
+func (p PairList) Len() int           { return len(p) }
+func (p PairList) Less(i, j int) bool { return p[i
