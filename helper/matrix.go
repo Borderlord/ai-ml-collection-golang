@@ -14,4 +14,7 @@ func MatrixAdditionWithNumber(matrix [][]float64, number float64) [][]float64 {
 }
 
 func TransponseMatrix(x [][]float32) [][]float32 {
-	out := make([][]float32, 
+	out := make([][]float32, len(x[0]))
+	for i := 0; i < len(x); i += 1 {
+		for j := 0; j < len(x[0]); j += 1 {
+			out[j] = append(
