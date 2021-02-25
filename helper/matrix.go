@@ -17,4 +17,10 @@ func TransponseMatrix(x [][]float32) [][]float32 {
 	out := make([][]float32, len(x[0]))
 	for i := 0; i < len(x); i += 1 {
 		for j := 0; j < len(x[0]); j += 1 {
-			out[j] = append(
+			out[j] = append(out[j], x[i][j])
+		}
+	}
+	return out
+}
+
+func MatrixMultiplication(matrix1, matrix2 [][]float64) ([][]float64
