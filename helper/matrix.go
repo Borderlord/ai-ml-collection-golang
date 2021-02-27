@@ -23,4 +23,9 @@ func TransponseMatrix(x [][]float32) [][]float32 {
 	return out
 }
 
-func MatrixMultiplication(matrix1, matrix2 [][]float64) ([][]float64
+func MatrixMultiplication(matrix1, matrix2 [][]float64) ([][]float64, error) {
+	if len(matrix1) == 0 || len(matrix2) == 0 {
+		return nil, errors.New("Nil Matrix Length")
+	}
+
+	matr
