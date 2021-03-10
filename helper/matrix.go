@@ -31,4 +31,8 @@ func MatrixMultiplication(matrix1, matrix2 [][]float64) ([][]float64, error) {
 	matrix1ColumnLength := len(matrix1[0])
 	matrix2RowLength := len(matrix2)
 
-	if matrix1ColumnLength
+	if matrix1ColumnLength != matrix2RowLength {
+		return nil, errors.New("Invalid Matrix Length")
+	}
+
+	resultMatrix := make(
