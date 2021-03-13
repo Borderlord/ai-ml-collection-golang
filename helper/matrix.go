@@ -37,4 +37,7 @@ func MatrixMultiplication(matrix1, matrix2 [][]float64) ([][]float64, error) {
 
 	resultMatrix := make([][]float64, len(matrix1))
 	for i := 0; i < len(matrix1); i++ {
-		resultMatrix[i] = make([]float64, len(matrix
+		resultMatrix[i] = make([]float64, len(matrix2[0]))
+		for j := 0; j < len(matrix2[0]); j++ {
+			for k := 0; k < len(matrix2); k++ {
+				resultMatrix[i][j] += matrix1[i]
