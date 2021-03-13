@@ -35,4 +35,6 @@ func MatrixMultiplication(matrix1, matrix2 [][]float64) ([][]float64, error) {
 		return nil, errors.New("Invalid Matrix Length")
 	}
 
-	resultMatrix := make(
+	resultMatrix := make([][]float64, len(matrix1))
+	for i := 0; i < len(matrix1); i++ {
+		resultMatrix[i] = make([]float64, len(matrix
