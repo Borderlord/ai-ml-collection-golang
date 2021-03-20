@@ -1,3 +1,12 @@
 package naive_bayes
 
-impor
+import (
+	"math"
+)
+
+const (
+	CONSTANT = 1
+)
+
+type EvaluatorInterface interface {
+	EvaluateInput(input interface{}) ([
