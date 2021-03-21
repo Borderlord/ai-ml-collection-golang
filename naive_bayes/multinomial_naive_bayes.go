@@ -16,4 +16,9 @@ type EvaluatorInterface interface {
 	GetSumDataOfClass(class string) float64
 }
 
-type MultinomialNaiveBa
+type MultinomialNaiveBayesConfig struct {
+	Evaluator EvaluatorInterface
+}
+
+type MultinomialNaiveBayes struct {
+	evaluator 
