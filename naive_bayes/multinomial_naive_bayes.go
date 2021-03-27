@@ -24,4 +24,9 @@ type MultinomialNaiveBayes struct {
 	evaluator EvaluatorInterface
 }
 
-func NewMultinomialNaiveBayes(cfg MultinomialNaiveBayesConfig) Multin
+func NewMultinomialNaiveBayes(cfg MultinomialNaiveBayesConfig) MultinomialNaiveBayes {
+	multinomialNaiveBayes := MultinomialNaiveBayes{
+		evaluator: cfg.Evaluator,
+	}
+
+	
