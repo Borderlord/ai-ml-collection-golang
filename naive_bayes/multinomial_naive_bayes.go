@@ -29,4 +29,7 @@ func NewMultinomialNaiveBayes(cfg MultinomialNaiveBayesConfig) MultinomialNaiveB
 		evaluator: cfg.Evaluator,
 	}
 
-	
+	return multinomialNaiveBayes
+}
+
+func (nb MultinomialNaiveBayes) Predict(inputs interface{}) ([
