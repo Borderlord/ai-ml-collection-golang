@@ -32,4 +32,6 @@ func NewMultinomialNaiveBayes(cfg MultinomialNaiveBayesConfig) MultinomialNaiveB
 	return multinomialNaiveBayes
 }
 
-func (nb MultinomialNaiveBayes) Predict(inputs interface{}) ([
+func (nb MultinomialNaiveBayes) Predict(inputs interface{}) ([]string, error) {
+	var predicted []string
+	probabilities, err := nb.PredictProbab
