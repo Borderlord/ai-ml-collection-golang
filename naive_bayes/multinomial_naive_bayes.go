@@ -34,4 +34,11 @@ func NewMultinomialNaiveBayes(cfg MultinomialNaiveBayesConfig) MultinomialNaiveB
 
 func (nb MultinomialNaiveBayes) Predict(inputs interface{}) ([]string, error) {
 	var predicted []string
-	probabilities, err := nb.PredictProbab
+	probabilities, err := nb.PredictProbability(inputs)
+
+	if err != nil {
+		return nil, err
+	}
+
+	for _, prob := range probabilities {
+		highestProb
