@@ -41,4 +41,8 @@ func (nb MultinomialNaiveBayes) Predict(inputs interface{}) ([]string, error) {
 	}
 
 	for _, prob := range probabilities {
-		highestProb
+		highestProb := float64(0)
+		var selectedClass string
+		for key, value := range prob {
+			if highestProb < value {
+				se
