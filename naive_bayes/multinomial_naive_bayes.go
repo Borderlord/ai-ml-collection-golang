@@ -45,4 +45,9 @@ func (nb MultinomialNaiveBayes) Predict(inputs interface{}) ([]string, error) {
 		var selectedClass string
 		for key, value := range prob {
 			if highestProb < value {
-				se
+				selectedClass = key
+				highestProb = value
+			}
+		}
+		predicted = append(predicted, selectedClass)
+	
