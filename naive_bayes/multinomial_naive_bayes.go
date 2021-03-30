@@ -50,4 +50,9 @@ func (nb MultinomialNaiveBayes) Predict(inputs interface{}) ([]string, error) {
 			}
 		}
 		predicted = append(predicted, selectedClass)
-	
+	}
+
+	return predicted, nil
+}
+
+func (nb MultinomialNaiveBayes) PredictProb
