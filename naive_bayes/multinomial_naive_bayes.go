@@ -63,3 +63,7 @@ func (nb MultinomialNaiveBayes) PredictProbability(inputs interface{}) ([]map[st
 	}
 
 	var allPrediction []map[string]float64
+
+	for _, evaluatedInput := range evaluatedInputs {
+		var predictedClass = make(map[string]float64)
+		den
