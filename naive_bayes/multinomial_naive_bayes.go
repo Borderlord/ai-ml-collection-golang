@@ -56,4 +56,10 @@ func (nb MultinomialNaiveBayes) Predict(inputs interface{}) ([]string, error) {
 }
 
 func (nb MultinomialNaiveBayes) PredictProbability(inputs interface{}) ([]map[string]float64, error) {
-	evaluatedInputs, err := nb.evaluator.Evalu
+	evaluatedInputs, err := nb.evaluator.EvaluateInput(inputs)
+
+	if err != nil {
+		return nil, err
+	}
+
+	var allPrediction []map[string]float64
