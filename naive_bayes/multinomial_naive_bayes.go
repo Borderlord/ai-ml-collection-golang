@@ -68,4 +68,6 @@ func (nb MultinomialNaiveBayes) PredictProbability(inputs interface{}) ([]map[st
 		var predictedClass = make(map[string]float64)
 		denominator := float64(0)
 		for corpusClass, _ := range nb.evaluator.GetTrainedData() {
-			predictedClassValue := fl
+			predictedClassValue := float64(1)
+			totalValueForClass := nb.evaluator.GetSumDataOfClass(corpusClass)
+			dictionaryLengt
