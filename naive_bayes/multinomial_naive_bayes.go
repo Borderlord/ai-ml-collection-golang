@@ -77,4 +77,8 @@ func (nb MultinomialNaiveBayes) PredictProbability(inputs interface{}) ([]map[st
 				predictedClassValue *= predictedWordValue
 			}
 
-			denominator += pre
+			denominator += predictedClassValue
+			predictedClass[corpusClass] = predictedClassValue
+		}
+
+		for corpusClass, 
