@@ -72,4 +72,5 @@ func (nb MultinomialNaiveBayes) PredictProbability(inputs interface{}) ([]map[st
 			totalValueForClass := nb.evaluator.GetSumDataOfClass(corpusClass)
 			dictionaryLength := float64(len(nb.evaluator.GetDictionary()))
 
-			for idx, val := range nb.evaluator.GetSumVectorDat
+			for idx, val := range nb.evaluator.GetSumVectorDataOfClass(corpusClass) {
+				predictedWordValue := math.Pow((val+CONSTANT)/(totalValueForClass+dictionaryLength)
