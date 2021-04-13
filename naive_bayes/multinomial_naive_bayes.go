@@ -82,4 +82,10 @@ func (nb MultinomialNaiveBayes) PredictProbability(inputs interface{}) ([]map[st
 		}
 
 		for corpusClass, predictedValue := range predictedClass {
-			predictedClass[corpusClass] = predictedValu
+			predictedClass[corpusClass] = predictedValue / denominator
+		}
+
+		allPrediction = append(allPrediction, predictedClass)
+	}
+
+	retur
