@@ -88,4 +88,5 @@ func (nb MultinomialNaiveBayes) PredictProbability(inputs interface{}) ([]map[st
 		allPrediction = append(allPrediction, predictedClass)
 	}
 
-	retur
+	return allPrediction, nil
+}
