@@ -7,4 +7,11 @@ import (
 	"strings"
 )
 
-const 
+const (
+	StateNotFound = "State Not Found"
+	InvalidInput  = "Invalid Input"
+
+	Negate = "!"
+)
+
+type transitionIn
