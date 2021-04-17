@@ -14,4 +14,11 @@ const (
 	Negate = "!"
 )
 
-type transitionIn
+type transitionInput struct {
+	srcStateIndex uint64
+	input         string
+}
+
+type State struct {
+	Name  string
+	Index ui
