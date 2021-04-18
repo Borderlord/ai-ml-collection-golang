@@ -29,3 +29,7 @@ type destState map[State]bool
 type NFA struct {
 	initState    State
 	currentState map[State]bool
+	allStates    []State
+	finalStates  []State
+	transition   map[transitionInput]destState
+	inputMap   
