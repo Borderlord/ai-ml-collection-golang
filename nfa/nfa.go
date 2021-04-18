@@ -21,4 +21,11 @@ type transitionInput struct {
 
 type State struct {
 	Name  string
-	Index ui
+	Index uint64
+}
+
+type destState map[State]bool
+
+type NFA struct {
+	initState    State
+	currentState map[State]bool
