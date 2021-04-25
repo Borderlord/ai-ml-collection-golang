@@ -42,4 +42,9 @@ func NewNFA(initStateName string, isFinal bool) (*NFA, *State, error) {
 		Index: 0,
 	}
 	retNFA := &NFA{
-		transition: make(map[trans
+		transition: make(map[transitionInput]destState),
+		inputMap:   make(map[string]bool),
+		initState:  initState,
+	}
+
+	retNFA.cu
