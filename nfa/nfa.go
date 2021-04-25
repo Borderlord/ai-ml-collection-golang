@@ -32,4 +32,9 @@ type NFA struct {
 	allStates    []State
 	finalStates  []State
 	transition   map[transitionInput]destState
-	inputMap   
+	inputMap     map[string]bool
+}
+
+//New a new NFA
+func NewNFA(initStateName string, isFinal bool) (*NFA, *State, error) {
+	init
