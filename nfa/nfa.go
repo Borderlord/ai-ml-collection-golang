@@ -37,4 +37,9 @@ type NFA struct {
 
 //New a new NFA
 func NewNFA(initStateName string, isFinal bool) (*NFA, *State, error) {
-	init
+	initState := State{
+		Name:  initStateName,
+		Index: 0,
+	}
+	retNFA := &NFA{
+		transition: make(map[trans
