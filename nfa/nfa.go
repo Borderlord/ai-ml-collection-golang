@@ -47,4 +47,6 @@ func NewNFA(initStateName string, isFinal bool) (*NFA, *State, error) {
 		initState:  initState,
 	}
 
-	retNFA.cu
+	retNFA.currentState = make(map[State]bool)
+	retNFA.currentState[initState] = true
+	_, err := retNFA.AddState(&initState
