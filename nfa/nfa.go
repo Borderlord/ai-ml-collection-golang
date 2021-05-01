@@ -58,4 +58,7 @@ func NewNFA(initStateName string, isFinal bool) (*NFA, *State, error) {
 	return retNFA, &initState, nil
 }
 
-func (d *N
+func (d *NFA) GetCurrenteState() (map[State]bool, error) {
+	return d.currentState, nil
+}
+func (d *NFA) GetAllState() ([]State, er
