@@ -61,4 +61,9 @@ func NewNFA(initStateName string, isFinal bool) (*NFA, *State, error) {
 func (d *NFA) GetCurrenteState() (map[State]bool, error) {
 	return d.currentState, nil
 }
-func (d *NFA) GetAllState() ([]State, er
+func (d *NFA) GetAllState() ([]State, error) {
+	return d.allStates, nil
+}
+
+//Add new state in this NFA
+func (d *NFA) AddState(state *State, isFinal boo
