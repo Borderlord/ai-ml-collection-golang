@@ -69,4 +69,10 @@ func (d *NFA) GetAllState() ([]State, error) {
 func (d *NFA) AddState(state *State, isFinal bool) (*State, error) {
 	if state == nil || state.Name == "" {
 		return nil, errors.New(InvalidInput)
-	
+	}
+
+	currentIndex := uint64(len(d.allStates))
+
+	state.Index = currentIndex
+
+	d.allStates = append(d.allState
