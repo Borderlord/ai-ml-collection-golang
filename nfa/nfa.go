@@ -66,4 +66,7 @@ func (d *NFA) GetAllState() ([]State, error) {
 }
 
 //Add new state in this NFA
-func (d *NFA) AddState(state *State, isFinal boo
+func (d *NFA) AddState(state *State, isFinal bool) (*State, error) {
+	if state == nil || state.Name == "" {
+		return nil, errors.New(InvalidInput)
+	
