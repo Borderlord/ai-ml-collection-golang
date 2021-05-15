@@ -84,4 +84,9 @@ func (d *NFA) AddState(state *State, isFinal bool) (*State, error) {
 }
 
 //Add new transition function into NFA
-func (d *NFA) AddTransition(srcStateIndex uint64, input string, dstStateList ...St
+func (d *NFA) AddTransition(srcStateIndex uint64, input string, dstStateList ...State) error {
+	find := false
+
+	for _, v := range d.allStates {
+		if v.Index == srcStateIndex {
+			find = true
