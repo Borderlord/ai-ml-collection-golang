@@ -83,4 +83,5 @@ func (d *NFA) AddState(state *State, isFinal bool) (*State, error) {
 	return state, nil
 }
 
-//Add new transit
+//Add new transition function into NFA
+func (d *NFA) AddTransition(srcStateIndex uint64, input string, dstStateList ...St
