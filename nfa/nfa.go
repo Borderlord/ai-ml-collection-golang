@@ -75,4 +75,12 @@ func (d *NFA) AddState(state *State, isFinal bool) (*State, error) {
 
 	state.Index = currentIndex
 
-	d.allStates = append(d.allState
+	d.allStates = append(d.allStates, *state)
+	if isFinal {
+		d.finalStates = append(d.finalStates, *state)
+	}
+
+	return state, nil
+}
+
+//Add new transit
