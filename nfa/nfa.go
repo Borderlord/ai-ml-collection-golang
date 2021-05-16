@@ -98,4 +98,9 @@ func (d *NFA) AddTransition(srcStateIndex uint64, input string, dstStateList ...
 	}
 
 	if input == "" {
-		return erro
+		return errors.New(InvalidInput)
+	}
+
+	//find input if exist in NFA input List
+	if _, ok := d.inputMap[input]; !ok {
+		//not ex
