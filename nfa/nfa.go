@@ -103,4 +103,9 @@ func (d *NFA) AddTransition(srcStateIndex uint64, input string, dstStateList ...
 
 	//find input if exist in NFA input List
 	if _, ok := d.inputMap[input]; !ok {
-		//not ex
+		//not exist, new input in this NFA
+		d.inputMap[input] = true
+	}
+
+	dstMap := make(map[State]bool)
+	for _, destState 
