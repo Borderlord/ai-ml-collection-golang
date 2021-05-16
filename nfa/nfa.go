@@ -108,4 +108,8 @@ func (d *NFA) AddTransition(srcStateIndex uint64, input string, dstStateList ...
 	}
 
 	dstMap := make(map[State]bool)
-	for _, destState 
+	for _, destState := range dstStateList {
+		dstMap[destState] = true
+	}
+
+	targetTrans := transitionInput{srcStateIndex: srcSt
