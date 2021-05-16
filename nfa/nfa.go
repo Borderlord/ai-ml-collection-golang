@@ -90,3 +90,12 @@ func (d *NFA) AddTransition(srcStateIndex uint64, input string, dstStateList ...
 	for _, v := range d.allStates {
 		if v.Index == srcStateIndex {
 			find = true
+		}
+	}
+
+	if !find {
+		return errors.New(StateNotFound)
+	}
+
+	if input == "" {
+		return erro
