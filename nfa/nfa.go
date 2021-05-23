@@ -118,4 +118,6 @@ func (d *NFA) AddTransition(srcStateIndex uint64, input string, dstStateList ...
 	return nil
 }
 
-func (d *NFA) Input(test
+func (d *NFA) Input(testInput string) ([]State, error) {
+	updateCurrentState := make(map[State]bool)
+	for current, 
