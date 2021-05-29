@@ -120,4 +120,5 @@ func (d *NFA) AddTransition(srcStateIndex uint64, input string, dstStateList ...
 
 func (d *NFA) Input(testInput string) ([]State, error) {
 	updateCurrentState := make(map[State]bool)
-	for current, 
+	for current, _ := range d.currentState {
+		intputTrans := transitionInput{srcStateIndex: current.Index, input: testI
