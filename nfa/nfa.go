@@ -124,4 +124,9 @@ func (d *NFA) Input(testInput string) ([]State, error) {
 		intputTrans := transitionInput{srcStateIndex: current.Index, input: testInput}
 
 		if valMap, ok := d.transition[intputTrans]; ok {
-			for dst, _ := range va
+			for dst, _ := range valMap {
+				updateCurrentState[dst] = true
+			}
+		} else {
+			//dead state, remove in current state
+			//do nothin
