@@ -129,4 +129,7 @@ func (d *NFA) Input(testInput string) ([]State, error) {
 			}
 		} else {
 			//dead state, remove in current state
-			//do nothin
+			//do nothing.
+			for key, _ := range d.transition {
+				var temp string
+				if string(key.input[0]) != Negat
