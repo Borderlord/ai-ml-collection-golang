@@ -132,4 +132,9 @@ func (d *NFA) Input(testInput string) ([]State, error) {
 			//do nothing.
 			for key, _ := range d.transition {
 				var temp string
-				if string(key.input[0]) != Negat
+				if string(key.input[0]) != Negate {
+					continue
+				}
+				temp = strings.Replace(key.input, Negate, "", 1)
+				if temp != testInput {
+					for d
