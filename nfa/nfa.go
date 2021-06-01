@@ -137,4 +137,12 @@ func (d *NFA) Input(testInput string) ([]State, error) {
 				}
 				temp = strings.Replace(key.input, Negate, "", 1)
 				if temp != testInput {
-					for d
+					for dst, _ := range d.transition[key] {
+						updateCurrentState[dst] = true
+					}
+				}
+			}
+		}
+	}
+
+	//update curr
