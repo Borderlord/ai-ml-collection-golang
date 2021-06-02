@@ -145,4 +145,9 @@ func (d *NFA) Input(testInput string) ([]State, error) {
 		}
 	}
 
-	//update curr
+	//update curret state
+	d.currentState = updateCurrentState
+
+	//return result
+	var ret []State
+	for state, _ := range upd
