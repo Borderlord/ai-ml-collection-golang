@@ -150,4 +150,12 @@ func (d *NFA) Input(testInput string) ([]State, error) {
 
 	//return result
 	var ret []State
-	for state, _ := range upd
+	for state, _ := range updateCurrentState {
+		ret = append(ret, state)
+	}
+
+	return ret, nil
+}
+
+//To verify current state if it is final state
+func (d
