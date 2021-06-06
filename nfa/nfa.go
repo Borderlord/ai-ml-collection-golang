@@ -158,4 +158,7 @@ func (d *NFA) Input(testInput string) ([]State, error) {
 }
 
 //To verify current state if it is final state
-func (d
+func (d *NFA) Verify() bool {
+	for _, val := range d.finalStates {
+		for cState, _ := range d.currentState {
+			if val
