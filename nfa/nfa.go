@@ -161,4 +161,12 @@ func (d *NFA) Input(testInput string) ([]State, error) {
 func (d *NFA) Verify() bool {
 	for _, val := range d.finalStates {
 		for cState, _ := range d.currentState {
-			if val
+			if val == cState {
+				return true
+			}
+		}
+	}
+	return false
+}
+
+//Reset NFA state to initilize state, but 
