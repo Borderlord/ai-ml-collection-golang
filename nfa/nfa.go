@@ -169,4 +169,6 @@ func (d *NFA) Verify() bool {
 	return false
 }
 
-//Reset NFA state to initilize state, but 
+//Reset NFA state to initilize state, but all state and transition function will remain
+func (d *NFA) Reset() error {
+	initState := ma
