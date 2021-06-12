@@ -178,4 +178,6 @@ func (d *NFA) Reset() error {
 	return nil
 }
 
-//Verif
+//Verify if list of input could be accept by NFA or not
+func (d *NFA) VerifyInputs(inputs []string) bool {
+	for _,
