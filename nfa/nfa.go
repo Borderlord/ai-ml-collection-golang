@@ -171,4 +171,11 @@ func (d *NFA) Verify() bool {
 
 //Reset NFA state to initilize state, but all state and transition function will remain
 func (d *NFA) Reset() error {
-	initState := ma
+	initState := make(map[State]bool)
+	initState[d.initState] = true
+	d.currentState = initState
+
+	return nil
+}
+
+//Verif
