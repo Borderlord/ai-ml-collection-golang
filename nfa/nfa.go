@@ -186,4 +186,5 @@ func (d *NFA) VerifyInputs(inputs []string) bool {
 	return d.Verify()
 }
 
-func (d *NFA) PrintTransitionTable
+func (d *NFA) PrintTransitionTable() {
+	fmt.Println("====================================================================================================
