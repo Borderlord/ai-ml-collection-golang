@@ -187,4 +187,9 @@ func (d *NFA) VerifyInputs(inputs []string) bool {
 }
 
 func (d *NFA) PrintTransitionTable() {
-	fmt.Println("====================================================================================================
+	fmt.Println("==========================================================================================================================")
+	//list all inputs
+	var inputList []string
+
+	fmt.Printf("%16s|", "")
+	for ke
