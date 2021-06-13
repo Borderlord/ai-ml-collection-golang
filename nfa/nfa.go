@@ -192,4 +192,9 @@ func (d *NFA) PrintTransitionTable() {
 	var inputList []string
 
 	fmt.Printf("%16s|", "")
-	for ke
+	for key, _ := range d.inputMap {
+		fmt.Printf("%15s|", key)
+		inputList = append(inputList, key)
+	}
+
+	fmt.Print
