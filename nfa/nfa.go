@@ -197,4 +197,5 @@ func (d *NFA) PrintTransitionTable() {
 		inputList = append(inputList, key)
 	}
 
-	fmt.Print
+	fmt.Printf("\n")
+	fmt.Println("--------------------------------------------------------------------------------------------
