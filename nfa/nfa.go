@@ -180,4 +180,10 @@ func (d *NFA) Reset() error {
 
 //Verify if list of input could be accept by NFA or not
 func (d *NFA) VerifyInputs(inputs []string) bool {
-	for _,
+	for _, v := range inputs {
+		d.Input(v)
+	}
+	return d.Verify()
+}
+
+func (d *NFA) PrintTransitionTable
