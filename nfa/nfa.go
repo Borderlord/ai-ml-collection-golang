@@ -209,3 +209,7 @@ func (d *NFA) PrintTransitionTable() {
 				break
 			}
 		}
+		if isFinal {
+			fmt.Printf("*%4d %10s|", state.Index, state.Name)
+		} else {
+			fmt.Printf("%5d %10s
