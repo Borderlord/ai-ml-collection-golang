@@ -203,4 +203,9 @@ func (d *NFA) PrintTransitionTable() {
 	for _, state := range d.allStates {
 		isFinal := false
 
-		for _, s := ran
+		for _, s := range d.finalStates {
+			if s.Index == state.Index {
+				isFinal = true
+				break
+			}
+		}
