@@ -217,4 +217,7 @@ func (d *NFA) PrintTransitionTable() {
 		for _, key := range inputList {
 			checkInput := transitionInput{srcStateIndex: state.Index, input: key}
 			if dstState, ok := d.transition[checkInput]; ok {
-	
+				var temp []string
+
+				for val, _ := range dstState {
+					temp = append(temp, strconv.FormatUint(val.Index
