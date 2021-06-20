@@ -215,4 +215,6 @@ func (d *NFA) PrintTransitionTable() {
 			fmt.Printf("%5d %10s|", state.Index, state.Name)
 		}
 		for _, key := range inputList {
-			checkInput := transitionInput{s
+			checkInput := transitionInput{srcStateIndex: state.Index, input: key}
+			if dstState, ok := d.transition[checkInput]; ok {
+	
