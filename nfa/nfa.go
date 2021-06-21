@@ -224,4 +224,10 @@ func (d *NFA) PrintTransitionTable() {
 				}
 				fmt.Printf("%15s|", strings.Join(temp, ","))
 			} else {
-				fmt.Printf(
+				fmt.Printf("%15s|", "NA")
+			}
+		}
+		fmt.Printf("\n")
+	}
+
+	fmt.Println("-------------------------------------------------------
