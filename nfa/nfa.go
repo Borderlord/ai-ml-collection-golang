@@ -220,4 +220,8 @@ func (d *NFA) PrintTransitionTable() {
 				var temp []string
 
 				for val, _ := range dstState {
-					temp = append(temp, strconv.FormatUint(val.Index
+					temp = append(temp, strconv.FormatUint(val.Index, 10))
+				}
+				fmt.Printf("%15s|", strings.Join(temp, ","))
+			} else {
+				fmt.Printf(
