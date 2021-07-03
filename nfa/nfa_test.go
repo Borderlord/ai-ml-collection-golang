@@ -11,4 +11,12 @@ func TestBasic(t *testing.T) {
 		panic(err)
 	}
 
-	state1, err := newNFA.AddState(&Sta
+	state1, err := newNFA.AddState(&State{
+		Name: "State 1",
+	}, false)
+
+	if err != nil {
+		panic(err)
+	}
+
+	state2, err := newNFA.AddState(&State{
