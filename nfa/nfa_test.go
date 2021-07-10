@@ -37,4 +37,9 @@ func TestBasic(t *testing.T) {
 		panic(err)
 	}
 
-	e
+	err = newNFA.AddTransition(state1.Index, "b", *state0, *state2)
+
+	if err != nil {
+		panic(err)
+	}
+
