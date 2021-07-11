@@ -43,3 +43,9 @@ func TestBasic(t *testing.T) {
 		panic(err)
 	}
 
+	var inputs []string
+
+	inputs = append(inputs, "a")
+	inputs = append(inputs, "b")
+
+	if !newNFA.VerifyInputs(input
