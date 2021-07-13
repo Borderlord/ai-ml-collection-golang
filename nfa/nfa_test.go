@@ -48,4 +48,7 @@ func TestBasic(t *testing.T) {
 	inputs = append(inputs, "a")
 	inputs = append(inputs, "b")
 
-	if !newNFA.VerifyInputs(input
+	if !newNFA.VerifyInputs(inputs) {
+		t.Errorf("This Should Be On Final")
+	}
+}
