@@ -113,3 +113,89 @@ func NewDefaultTagger(cfg DefaultTaggerConfig) *DefaultTagger {
 func (n *DefaultTagger) Learn(tuple [][][2]string) error {
 	return nil
 }
+
+func (n *DefaultTagger) Predict(text string) ([][2]string, error) {
+	splitedStrings := strings.Split(text, " ")
+	var tuple [][2]string
+
+	for _, splitedString := range splitedStrings {
+		tag := n.defaultTag
+
+		if !helper.IsAlphaNumeric(splitedString) && len(splitedString) == 1 {
+			tag = splitedString
+		}
+		tuple = append(tuple, [2]string{
+			splitedString,
+			tag,
+		})
+	}
+	return tuple, nil
+}
+
+type CompliedPattern struct {
+	Pattern *regexp.Regexp
+	Tag     string
+}
+
+type RegexTagger struct {
+	compliedPatterns []CompliedPattern
+	backoffTagger    Tagger
+}
+
+type RegexTaggerConfig struct {
+	Patterns      [][2]string
+	BackoffTagger Tagger
+}
+
+func NewRegexTagger(cfg RegexTaggerConfig) *RegexTagger {
+	var compliedPatterns []CompliedPattern
+	for _, pattern := range cfg.Patterns {
+		cp := CompliedPattern{
+			Pattern: regexp.MustCompile(pattern[0]),
+			Tag:     pattern[1],
+		}
+		compliedPatterns = append(compliedPatterns, cp)
+	}
+	return &RegexTagger{
+		compliedPatterns: compliedPatterns,
+		backoffTagger:    cfg.BackoffTagger,
+	}
+}
+
+func (n *RegexTagger) Learn(tuple [][][2]string) error {
+	return nil
+}
+
+func (n *RegexTagger) Predict(text string) ([][2]string, error) {
+	splitedStrings := strings.Split(text, " ")
+	var tuple [][2]string
+	for _, splitedString := range splitedStrings {
+		var tag *string
+		for _, compiledPattern := range n.compliedPatterns {
+			if compiledPattern.Pattern.MatchString(splitedString) {
+				x := compiledPattern.Tag
+				tag = &x
+				break
+			}
+		}
+		if n.backoffTagger != nil && tag == nil {
+			result, err := n.backoffTagger.Predict(splitedString)
+
+			if err != nil {
+				return nil, err
+			}
+
+			tag = &result[0][1]
+		}
+
+		if tag == nil {
+			x := ""
+			tag = &x
+		}
+		tuple = append(tuple, [2]string{
+			splitedString,
+			*tag,
+		})
+	}
+	return tuple, nil
+}
