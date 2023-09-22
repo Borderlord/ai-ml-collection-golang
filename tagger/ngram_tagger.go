@@ -141,3 +141,92 @@ func (n *NGramTagger) Predict(text string) ([][2]string, error) {
 						selectedTag = &val
 					}
 				}
+			}
+		}
+
+		if selectedTag == nil && n.backoffTagger != nil {
+			predictedValue, err := n.backoffTagger.Predict(splitedString)
+
+			if err != nil {
+				return nil, err
+			}
+
+			selectedTag = &predictedValue[0][1]
+		}
+
+		if selectedTag == nil {
+			x := ""
+			selectedTag = &x
+		}
+
+		tuple = append(tuple, [2]string{
+			splitedString,
+			*selectedTag,
+		})
+	}
+	return tuple, nil
+}
+
+func (n *NGramTagger) Learn(tuple [][][2]string) error {
+	var tupleMap = make(map[string]map[string]float64)
+	maxQueueCount := n.n - 1
+	generatedTag := ""
+	for _, sentence := range tuple {
+
+		queue := list.New()
+		for idx, word := range sentence {
+			if idx == len(sentence)-1 {
+				break
+			}
+
+			if uint64(idx) < n.n-1 {
+				queue.PushBack(word)
+				continue
+			}
+
+			generatedTag = ""
+
+			for i := 0; i < queue.Len(); i++ {
+				e := queue.Front()
+				val := e.Value.([2]string)
+				generatedTag += val[1] + "_"
+				queue.MoveToBack(e)
+			}
+
+			generatedTag += word[0]
+
+			if _, exists := tupleMap[generatedTag]; !exists {
+				var temp = make(map[string]float64)
+				temp[word[1]] = 1
+				tupleMap[generatedTag] = temp
+			} else {
+				if _, exists := tupleMap[generatedTag][word[1]]; !exists {
+					tupleMap[generatedTag][word[1]] = 1
+				} else {
+					tupleMap[generatedTag][word[1]] += 1
+				}
+			}
+
+			queue.PushBack(word)
+
+			if uint64(queue.Len()) > maxQueueCount {
+				e := queue.Front()
+				queue.Remove(e)
+			}
+		}
+	}
+
+	for word, tm := range tupleMap {
+		selectedTag := ""
+		maxCount := float64(0)
+		for tag, count := range tm {
+			if maxCount < count {
+				selectedTag = tag
+				maxCount = count
+			}
+		}
+		n.mapTag[word] = selectedTag
+	}
+
+	return nil
+}
