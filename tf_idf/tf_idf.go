@@ -174,3 +174,26 @@ func (tfidf TermFrequencyInverseDocumentFrequency) EvaluateInput(input interface
 	var evaluatedInput [][]float64
 
 	convertedInput := input.([]string)
+
+	vectorizedInput, err := tfidf.countVectorizer.Vectorize(convertedInput)
+
+	if err != nil {
+		return nil, err
+	}
+
+	for _, corpus := range vectorizedInput {
+		newTfIdf, normalizer := tfidf.Normalize(corpus)
+
+		for idx, _ := range corpus {
+			newTfIdf[idx] = newTfIdf[idx] / normalizer
+		}
+
+		evaluatedInput = append(evaluatedInput, newTfIdf)
+	}
+
+	return evaluatedInput, nil
+}
+
+func (tfidf TermFrequencyInverseDocumentFrequency) GetDictionary() map[string]uint64 {
+	return tfidf.countVectorizer.GetDictionary()
+}
