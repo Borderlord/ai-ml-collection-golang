@@ -2,4 +2,11 @@ package word_embedding
 
 type GetNeighborWordsInput struct {
 	Corpus     []string
-	Wind
+	WindowSize uint64
+}
+
+type NeighborhoodWord struct {
+	Words    [2]string
+	Distance uint64
+}
+type GetNeighborWordsOu
