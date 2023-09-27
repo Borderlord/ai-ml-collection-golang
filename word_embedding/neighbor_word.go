@@ -13,4 +13,8 @@ type GetNeighborWordsOutput struct {
 	NeighborhoodWords []NeighborhoodWord
 }
 
-func GetNeighborWords(input GetNeighborWordsInput) GetNeighbo
+func GetNeighborWords(input GetNeighborWordsInput) GetNeighborWordsOutput {
+	var output GetNeighborWordsOutput
+
+	return output
+}
