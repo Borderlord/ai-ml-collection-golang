@@ -135,3 +135,19 @@ func NewWordEmbedding(config WordEmbeddingConfig) (*WordEmbedding, error) {
 			return nil, errors.New(InvalidDataLearn)
 		}
 		var tempSource, tempTarget []float64
+		for idx := range learnData[0] {
+			tempSource = append(tempSource, float64(learnData[0][idx]))
+			tempTarget = append(tempTarget, float64(learnData[1][idx]))
+		}
+		source = append(source, tempSource)
+		target = append(target, tempTarget)
+	}
+
+	err := we.Learn(source, target)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return &we, nil
+}
