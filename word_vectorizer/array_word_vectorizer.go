@@ -12,4 +12,12 @@ const (
 type ArrayWordVectorizer struct {
 	lower          bool
 	data           map[string]uint64
-	labelEncoded  
+	labelEncoded   [][2]uint64
+	regexReplacers []RegexReplacer
+}
+
+type ArrayWordVectorizerConfig struct {
+	Lower bool
+}
+
+func NewAr
