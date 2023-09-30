@@ -20,4 +20,5 @@ type ArrayWordVectorizerConfig struct {
 	Lower bool
 }
 
-func NewAr
+func NewArrayWordVectorizer(vectorizer ArrayWordVectorizerConfig) *ArrayWordVectorizer {
+	wv := 
