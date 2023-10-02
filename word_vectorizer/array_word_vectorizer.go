@@ -21,4 +21,7 @@ type ArrayWordVectorizerConfig struct {
 }
 
 func NewArrayWordVectorizer(vectorizer ArrayWordVectorizerConfig) *ArrayWordVectorizer {
-	wv := 
+	wv := ArrayWordVectorizer{
+		lower: vectorizer.Lower,
+		regexReplacers: []RegexReplacer{
+			{Pattern: `[^a-zA-Z0-9
