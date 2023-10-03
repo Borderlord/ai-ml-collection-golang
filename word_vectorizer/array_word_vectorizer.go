@@ -30,4 +30,8 @@ func NewArrayWordVectorizer(vectorizer ArrayWordVectorizerConfig) *ArrayWordVect
 	}
 
 	wv.data = make(map[string]uint64)
-	re
+	return &wv
+}
+
+func (wv *ArrayWordVectorizer) Learn(arrayWord [][2]string) error {
+	count := uint64(0
