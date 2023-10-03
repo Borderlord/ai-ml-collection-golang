@@ -24,4 +24,10 @@ func NewArrayWordVectorizer(vectorizer ArrayWordVectorizerConfig) *ArrayWordVect
 	wv := ArrayWordVectorizer{
 		lower: vectorizer.Lower,
 		regexReplacers: []RegexReplacer{
-			{Pattern: `[^a-zA-Z0-9
+			{Pattern: `[^a-zA-Z0-9 ]+`, Replacer: ``},
+			{Pattern: `\s+`, Replacer: ` `},
+		},
+	}
+
+	wv.data = make(map[string]uint64)
+	re
