@@ -37,4 +37,7 @@ func (wv *ArrayWordVectorizer) Learn(arrayWord [][2]string) error {
 	count := uint64(0)
 	for _, pairWord := range arrayWord {
 		var word1Vect, word2Vect uint64
-		if val, exists := wv.data[pairWo
+		if val, exists := wv.data[pairWord[0]]; !exists {
+			wv.data[pairWord[0]] = count
+			word1Vect = count
+			count+
