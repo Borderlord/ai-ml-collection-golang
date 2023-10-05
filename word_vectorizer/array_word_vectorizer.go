@@ -34,4 +34,7 @@ func NewArrayWordVectorizer(vectorizer ArrayWordVectorizerConfig) *ArrayWordVect
 }
 
 func (wv *ArrayWordVectorizer) Learn(arrayWord [][2]string) error {
-	count := uint64(0
+	count := uint64(0)
+	for _, pairWord := range arrayWord {
+		var word1Vect, word2Vect uint64
+		if val, exists := wv.data[pairWo
