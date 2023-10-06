@@ -45,4 +45,12 @@ func (wv *ArrayWordVectorizer) Learn(arrayWord [][2]string) error {
 			word1Vect = val
 		}
 		if val, exists := wv.data[pairWord[1]]; !exists {
-			wv.data[pairWord[1]] = coun
+			wv.data[pairWord[1]] = count
+			word2Vect = count
+			count++
+		} else {
+			word2Vect = val
+		}
+
+		tempVectorizedWord := [2]uint64{
+			word1V
