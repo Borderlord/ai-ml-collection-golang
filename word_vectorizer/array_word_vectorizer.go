@@ -53,4 +53,13 @@ func (wv *ArrayWordVectorizer) Learn(arrayWord [][2]string) error {
 		}
 
 		tempVectorizedWord := [2]uint64{
-			word1V
+			word1Vect,
+			word2Vect,
+		}
+
+		wv.labelEncoded = append(wv.labelEncoded, tempVectorizedWord)
+	}
+	return nil
+}
+
+func (w
