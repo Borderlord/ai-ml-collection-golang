@@ -40,4 +40,9 @@ func (wv *ArrayWordVectorizer) Learn(arrayWord [][2]string) error {
 		if val, exists := wv.data[pairWord[0]]; !exists {
 			wv.data[pairWord[0]] = count
 			word1Vect = count
-			count+
+			count++
+		} else {
+			word1Vect = val
+		}
+		if val, exists := wv.data[pairWord[1]]; !exists {
+			wv.data[pairWord[1]] = coun
