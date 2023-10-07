@@ -62,4 +62,8 @@ func (wv *ArrayWordVectorizer) Learn(arrayWord [][2]string) error {
 	return nil
 }
 
-func (w
+func (wv *ArrayWordVectorizer) GetLabelEncodedWords() [][2]uint64 {
+	return wv.labelEncoded
+}
+
+func (wv *ArrayWor
