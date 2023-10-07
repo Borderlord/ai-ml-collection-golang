@@ -66,4 +66,6 @@ func (wv *ArrayWordVectorizer) GetLabelEncodedWords() [][2]uint64 {
 	return wv.labelEncoded
 }
 
-func (wv *ArrayWor
+func (wv *ArrayWordVectorizer) Normalize(document string) (string, error) {
+	if wv.lower {
+		document = strings.ToLower(docum
