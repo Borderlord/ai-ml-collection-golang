@@ -68,4 +68,8 @@ func (wv *ArrayWordVectorizer) GetLabelEncodedWords() [][2]uint64 {
 
 func (wv *ArrayWordVectorizer) Normalize(document string) (string, error) {
 	if wv.lower {
-		document = strings.ToLower(docum
+		document = strings.ToLower(document)
+	}
+
+	for _, regexReplacer := range wv.regexReplacers {
+		reg, err := regexp.Compile(regexReplac
