@@ -78,4 +78,9 @@ func (wv *ArrayWordVectorizer) Normalize(document string) (string, error) {
 			return "", err
 		}
 
-		document = reg.ReplaceAllString(document, regex
+		document = reg.ReplaceAllString(document, regexReplacer.Replacer)
+	}
+	return document, nil
+}
+
+func (wv *ArrayWordVectorizer) GetVectorizedWord() map[string
