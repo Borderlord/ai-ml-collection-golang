@@ -83,4 +83,6 @@ func (wv *ArrayWordVectorizer) Normalize(document string) (string, error) {
 	return document, nil
 }
 
-func (wv *ArrayWordVectorizer) GetVectorizedWord() map[string
+func (wv *ArrayWordVectorizer) GetVectorizedWord() map[string]uint64 {
+	return wv.data
+}
