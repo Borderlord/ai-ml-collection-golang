@@ -72,4 +72,10 @@ func (wv *ArrayWordVectorizer) Normalize(document string) (string, error) {
 	}
 
 	for _, regexReplacer := range wv.regexReplacers {
-		reg, err := regexp.Compile(regexReplac
+		reg, err := regexp.Compile(regexReplacer.Pattern)
+
+		if err != nil {
+			return "", err
+		}
+
+		document = reg.ReplaceAllString(document, regex
