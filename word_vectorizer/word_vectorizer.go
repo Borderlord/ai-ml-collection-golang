@@ -5,4 +5,10 @@ import (
 	"strings"
 )
 
-type RegexR
+type RegexReplacer struct {
+	Pattern  string
+	Replacer string
+}
+
+type WordVectorizer struct {
+	lower           
