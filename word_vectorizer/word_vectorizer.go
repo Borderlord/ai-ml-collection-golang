@@ -24,4 +24,7 @@ type WordVectorizerConfig struct {
 func New(vectorizer WordVectorizerConfig) WordVectorizer {
 	wv := WordVectorizer{
 		lower: vectorizer.Lower,
-		regexReplacers: []RegexRe
+		regexReplacers: []RegexReplacer{
+			{Pattern: `[^a-zA-Z0-9 ]+`, Replacer: ``},
+			{Pattern: `\s+`, Replacer: ` `},
+		},
