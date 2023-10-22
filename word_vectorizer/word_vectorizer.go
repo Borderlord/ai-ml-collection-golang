@@ -21,4 +21,7 @@ type WordVectorizerConfig struct {
 	Lower bool
 }
 
-func New(vectorizer WordVectorizerConfig) Wor
+func New(vectorizer WordVectorizerConfig) WordVectorizer {
+	wv := WordVectorizer{
+		lower: vectorizer.Lower,
+		regexReplacers: []RegexRe
