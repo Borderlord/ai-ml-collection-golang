@@ -11,4 +11,7 @@ type RegexReplacer struct {
 }
 
 type WordVectorizer struct {
-	lower           
+	lower           bool
+	data            map[string]uint64 //[word]index
+	cleanedCorpuses map[string][]string
+	regexRepl
