@@ -36,4 +36,5 @@ func New(vectorizer WordVectorizerConfig) WordVectorizer {
 	return wv
 }
 
-func (wv *
+func (wv *WordVectorizer) Learn(corpuses map[string][]string) error {
+	for corpusClass, corpus := range corp
