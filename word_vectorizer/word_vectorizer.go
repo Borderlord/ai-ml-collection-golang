@@ -28,3 +28,12 @@ func New(vectorizer WordVectorizerConfig) WordVectorizer {
 			{Pattern: `[^a-zA-Z0-9 ]+`, Replacer: ``},
 			{Pattern: `\s+`, Replacer: ` `},
 		},
+	}
+
+	wv.data = make(map[string]uint64)
+	wv.cleanedCorpuses = make(map[string][]string)
+
+	return wv
+}
+
+func (wv *
