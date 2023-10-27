@@ -42,4 +42,9 @@ func (wv *WordVectorizer) Learn(corpuses map[string][]string) error {
 
 			cleanedDocument, err := wv.Normalize(document)
 
-			if err != nil 
+			if err != nil {
+				return err
+			}
+
+			tokenizeWords := strings.Split(cleanedDocument, " ")
+			for _, wor
