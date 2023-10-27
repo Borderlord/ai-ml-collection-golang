@@ -37,4 +37,9 @@ func New(vectorizer WordVectorizerConfig) WordVectorizer {
 }
 
 func (wv *WordVectorizer) Learn(corpuses map[string][]string) error {
-	for corpusClass, corpus := range corp
+	for corpusClass, corpus := range corpuses {
+		for _, document := range corpus {
+
+			cleanedDocument, err := wv.Normalize(document)
+
+			if err != nil 
