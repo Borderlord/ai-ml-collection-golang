@@ -49,4 +49,8 @@ func (wv *WordVectorizer) Learn(corpuses map[string][]string) error {
 			tokenizeWords := strings.Split(cleanedDocument, " ")
 			for _, word := range tokenizeWords {
 				if _, exists := wv.data[word]; !exists {
-					wv
+					wv.data[word] = uint64(len(wv.data))
+				}
+			}
+
+			wv.cleanedCorpuses[corpusClass] = append(wv.clea
