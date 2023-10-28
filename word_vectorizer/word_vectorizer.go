@@ -53,4 +53,10 @@ func (wv *WordVectorizer) Learn(corpuses map[string][]string) error {
 				}
 			}
 
-			wv.cleanedCorpuses[corpusClass] = append(wv.clea
+			wv.cleanedCorpuses[corpusClass] = append(wv.cleanedCorpuses[corpusClass], cleanedDocument)
+		}
+	}
+	return nil
+}
+
+func (wv WordVectorizer) Normalize(documen
