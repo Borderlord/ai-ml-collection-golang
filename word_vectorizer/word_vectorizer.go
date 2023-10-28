@@ -59,4 +59,9 @@ func (wv *WordVectorizer) Learn(corpuses map[string][]string) error {
 	return nil
 }
 
-func (wv WordVectorizer) Normalize(documen
+func (wv WordVectorizer) Normalize(document string) (string, error) {
+	if wv.lower {
+		document = strings.ToLower(document)
+	}
+
+	for _, regexRepl
