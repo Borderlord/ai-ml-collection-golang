@@ -71,4 +71,10 @@ func (wv WordVectorizer) Normalize(document string) (string, error) {
 			return "", err
 		}
 
-		document = reg.ReplaceAllString(document, regexReplacer.Repl
+		document = reg.ReplaceAllString(document, regexReplacer.Replacer)
+	}
+	return document, nil
+}
+
+func (wv WordVectorizer) GetVectorizedWord() map[string]uint64 {
+	return w
