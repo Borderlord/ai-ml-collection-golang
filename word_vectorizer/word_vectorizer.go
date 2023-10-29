@@ -64,4 +64,7 @@ func (wv WordVectorizer) Normalize(document string) (string, error) {
 		document = strings.ToLower(document)
 	}
 
-	for _, regexRepl
+	for _, regexReplacer := range wv.regexReplacers {
+		reg, err := regexp.Compile(regexReplacer.Pattern)
+
+		if e
