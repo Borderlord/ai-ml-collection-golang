@@ -77,4 +77,9 @@ func (wv WordVectorizer) Normalize(document string) (string, error) {
 }
 
 func (wv WordVectorizer) GetVectorizedWord() map[string]uint64 {
-	return w
+	return wv.data
+}
+
+func (wv *WordVectorizer) GetCleanedCorpus() map[string][]string {
+	return wv.cleanedCorpuses
+}
